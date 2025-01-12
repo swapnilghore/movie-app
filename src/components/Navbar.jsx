@@ -14,20 +14,17 @@ const Navbar = () => {
     const handledSearch = (e) => {
         e.preventDefault();
 
-        console.log(search);
 
         let Api_key = 'c45a857c193f6302f2b5061c3b85e743';
 
         setLoading(true);
 
         axios.request(`https://api.themoviedb.org/3/search/movie?api_key=${Api_key}&language=en-US&query=${search}&page=11`).then((response) => {
-            console.log(response);
             setSearchedMovie(response.data.results);
             navigate('/search', { state: { key: searchedMovie } });
             setSearch('')
         })
             .catch((error) => {
-                console.log(error);
                 setLoading(false);
             })
             .finally(() => {

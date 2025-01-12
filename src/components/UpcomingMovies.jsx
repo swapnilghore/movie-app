@@ -18,11 +18,9 @@ const UpcomingMovies = () => {
         setLoading(true);
 
         axios.request(`https://api.themoviedb.org/3/movie/upcoming?api_key=${Api_key}&language=en-US&page=${count}`).then((response) => {
-            console.log(response);
             setAllUpcomingMovies((allUpcomingMovies) => [...allUpcomingMovies, ...response.data.results]);
         })
             .catch((error) => {
-                console.log(error);
                 setLoading(false);
             })
             .finally(() => {
@@ -31,14 +29,11 @@ const UpcomingMovies = () => {
     }, [count])
 
     const handledclick = (e) => {
-        console.log(e);
         navigate('/movie-detail', { state: { key: e } });
     }
 
     const loadMoreData = () =>{
-        console.log(count);
         setCount((prevCount) => prevCount + 1);
-        console.log(count);
     }
 
 

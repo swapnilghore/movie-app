@@ -8,19 +8,19 @@ const Search = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [search, setSearch] = React.useState([]);
+    const [id, setId] = React.useState(0);
     const [loading, setLoading] = React.useState(false);
 
     useEffect(() => {
         if (location.state?.key) {
             setLoading(true);
-            console.log("New key from location.state:", location.state.key);
             setSearch(location.state.key);
+            setId(location?.state?.key[0]?.id);
             setLoading(false);
         }
-    }, [location.state.key, search])
+    }, [location.state.key, search, id]);
 
     const handledclick = (e) => {
-        console.log(e);
         navigate('/movie-detail', { state: { key: e } });
     }
 

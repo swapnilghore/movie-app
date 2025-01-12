@@ -6,7 +6,6 @@ import blankimg from '../assets/blankMovi.webp'
 
 const MovieDetail = () => {
   const location = useLocation();
-  console.log(location.state);
 
   const [movieDetail, setMoviesDetail] = React.useState();
   const [cast, setCast] = React.useState([]);
@@ -19,11 +18,9 @@ const MovieDetail = () => {
     setLoading(true);
 
     axios.request(`https://api.themoviedb.org/3/movie/${location.state.key}?api_key=${Api_key}&language=en-US`).then((response) => {
-      console.log(response);
       setMoviesDetail(response.data);
     })
       .catch((error) => {
-        console.log(error);
         setLoading(false);
       })
       .finally(() => {
@@ -31,12 +28,9 @@ const MovieDetail = () => {
       });
 
     axios.request(`https://api.themoviedb.org/3/movie/${location.state.key}/credits?api_key=${Api_key}&language=en-US`).then((response) => {
-      console.log(response);
       setCast(response.data.cast);
-      console.log(response.data.cast);
     })
       .catch((error) => {
-        console.log(error);
         setLoading(false);
       })
       .finally(() => {
